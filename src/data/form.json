@@ -1,0 +1,53 @@
+[
+  {
+    "name": "username",
+    "type": "text",
+    "label": "Username",
+    "required": true,
+    "requiredMessage": "Username is required.",
+    "validation": "^[a-zA-Z0-9]{3,}$",
+    "validationMessage": "Username must be at least 3 characters long, and can only contain letters and numbers."
+  },
+  {
+    "name": "country",
+    "type": "select",
+    "label": "Country",
+    "required": true,
+    "requiredMessage": "Country is required.",
+    "options": [
+      {
+        "value": "us",
+        "label": "United States",
+        "flag": "🇺🇸"
+      },
+      {
+        "value": "ca",
+        "label": "Canada",
+        "flag": "🇨🇦"
+      },
+      {
+        "value": "mx",
+        "label": "Mexico",
+        "flag": "🇲🇽"
+      }
+    ]
+  },
+  {
+    "name": "tax_id",
+    "type": "text",
+    "error": "Tax is required.",
+    "validationReference": "country",
+    "validation": {
+      "us": "^[0-9]{3}-[0-9]{2}-[0-9]{4}$",
+      "ca": "^[0-9]{9}$",
+      "mx": "^[0-9]{13}$",
+      "default": "^[0-9]{9,13}$"
+    },
+    "validationMessage": {
+      "us": "Tax ID must be in the format XXX-XX-XXXX.",
+      "ca": "Tax ID must be 9 digits long.",
+      "mx": "Tax ID must be 13 digits long.",
+      "default": "Tax ID must be between 9 and 13 digits long."
+    }
+  }
+]

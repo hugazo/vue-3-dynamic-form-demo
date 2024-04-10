@@ -33,23 +33,26 @@ export default () => {
         };
       }
     }
-    // Note: will work after country selection since i need it's referecence
     // If has reference, use it to get the validation value
     if (field.validationReference) {
-      const selectedReference = formValues.value[field.validationReference].value.value;
+      const selectedReference = formValues.value[field.validationReference].value;
       if (selectedReference) {
         const selectedValue = field.validation[selectedReference] || field.validation.default;
         const regex = new RegExp(selectedValue);
         const result = regex.test(value.value);
-        return result;
+        return {
+          valid: result,
+          message: field.validationMessage[selectedReference],
+        };
       }
       return {
         valid: false,
+        disabled: true,
         message: 'No reference selected',
       };
     }
     return {
-      value: true,
+      valid: true,
     };
   };
 

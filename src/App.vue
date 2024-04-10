@@ -14,6 +14,7 @@ const { FormData, formValues } = useForms();
       <FormField
         v-model:value="formValues[field.name].value"
         v-model:result="formValues[field.name].result"
+        class="py-2"
         :field
       />
     </template>

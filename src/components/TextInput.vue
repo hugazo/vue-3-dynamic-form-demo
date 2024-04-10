@@ -3,9 +3,11 @@
     <label v-if="field.label">{{ field.label }}</label>
     <input
       v-model="value"
-      class="form-control"
+      class="form-control border"
+      :class="{ 'border-success': result.valid }"
+      :placeholder="field.placeholder"
       type="text"
-      :disabled
+      :disabled="disabled || result.disabled"
     >
     <small
       v-if="result.valid === false"
